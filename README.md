@@ -54,6 +54,14 @@ To run the server, run the following command:
 python manage.py runserver
 ```
 
+#### Running the tests
+
+To run the tests, run the following command:
+
+```bash
+python manage.py test
+```
+
 ## Usage
 
 ### Djando Admin

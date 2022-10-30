@@ -12,7 +12,7 @@ from pokemons.models import Pokemon
 
 class Team(BaseModel):
     name = CharField(max_length=100)
-    owner = ForeignKey(
+    trainer = ForeignKey(
         Trainer,
         related_name='teams',
         on_delete=CASCADE

@@ -12,7 +12,7 @@ from pokemons.serializers import PokemonSerializer
 class TeamSerializer(ModelSerializer):
 
     uuid = UUIDField(read_only=True, required=False)
-    owner = TrainerSerializer(read_only=True, required=False)
+    trainer = TrainerSerializer(read_only=True, required=False)
     members = PokemonSerializer(many=True, required=False)
 
     class Meta:
@@ -20,6 +20,6 @@ class TeamSerializer(ModelSerializer):
         fields = [
             'uuid',
             'name',
-            'owner',
+            'trainer',
             'members',
         ]

@@ -3,6 +3,7 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
+from rest_framework.status import HTTP_201_CREATED
 from rest_framework.response import Response
 from rest_framework.permissions import (
     AllowAny, IsAdminUser,
@@ -45,4 +46,7 @@ class TrainerSignUp(CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         trainer = serializer.save()
-        return Response(TrainerSerializer(trainer).data)
+        return Response(
+            TrainerSerializer(trainer).data,
+            status=HTTP_201_CREATED,
+        )

@@ -6,6 +6,7 @@ from teams.views import (
     TeamViewSet,
 )
 
+app_name = 'teams'
 router = routers.DefaultRouter()
 router.register(r'', TeamViewSet, basename='team')
 

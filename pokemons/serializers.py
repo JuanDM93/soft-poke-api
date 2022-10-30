@@ -52,5 +52,5 @@ class PokemonDetailSerializer(ModelSerializer):
 
     def validate(self, attrs):
         self.get_pokemon(attrs['name'].lower())
-        attrs['owner'] = self.context['request'].user.trainer
+        attrs['trainer'] = self.context['request'].user.trainer
         return attrs

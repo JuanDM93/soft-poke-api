@@ -9,7 +9,7 @@ from pokeapi.utils.models import BaseModel
 
 class Trainer(BaseModel):
     """
-    Owner of pokemon teams
+    Trainer of pokemon teams
     """
     user = OneToOneField(
         User,

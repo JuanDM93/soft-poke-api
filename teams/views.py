@@ -17,7 +17,7 @@ class TeamViewSet(ModelViewSet):
         if self.request.user.is_anonymous or self.request.user.is_staff:
             return Team.objects.all()
         trainer = self.request.user.trainer
-        return Team.objects.filter(owner=trainer)
+        return Team.objects.filter(trainer=trainer)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user.trainer)
+        serializer.save(trainer=self.request.user.trainer)

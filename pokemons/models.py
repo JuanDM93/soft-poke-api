@@ -16,7 +16,7 @@ class Pokemon(BaseModel):
     """
 
     name = CharField(max_length=100)
-    owner = ForeignKey(
+    trainer = ForeignKey(
         Trainer,
         related_name='pokemons',
         on_delete=CASCADE
