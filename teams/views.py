@@ -1,11 +1,11 @@
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
 from teams.models import Team
 from teams.serializers import TeamSerializer
 
 
-class TeamViewSet(viewsets.ModelViewSet):
+class TeamViewSet(ModelViewSet):
     """
     Trainer can only update and delete their own teams.
     """

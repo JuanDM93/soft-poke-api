@@ -11,4 +11,5 @@ router.register(r'', TeamViewSet, basename='team')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('<uuid:uuid>/pokemons/', include('pokemons.urls')),
 ]

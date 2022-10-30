@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     'trainers',
     'teams',
+    'pokemons',
 ]
 
 MIDDLEWARE = [

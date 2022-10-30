@@ -1,4 +1,7 @@
-from django.db import models
+from django.db.models import (
+    OneToOneField,
+    CASCADE,
+)
 from django.contrib.auth.models import User
 
 from pokeapi.utils.models import BaseModel
@@ -8,9 +11,9 @@ class Trainer(BaseModel):
     """
     Owner of pokemon teams
     """
-    user = models.OneToOneField(
+    user = OneToOneField(
         User,
-        on_delete=models.CASCADE,
+        on_delete=CASCADE,
         related_name='trainer',
     )
 

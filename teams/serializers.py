@@ -1,14 +1,19 @@
-from rest_framework import serializers
+from rest_framework.serializers import (
+    ModelSerializer,
+    UUIDField,
+)
 
 from teams.models import Team
 
 from trainers.serializers import TrainerSerializer
+from pokemons.serializers import PokemonSerializer
 
 
-class TeamSerializer(serializers.ModelSerializer):
+class TeamSerializer(ModelSerializer):
 
-    uuid = serializers.UUIDField(read_only=True, required=False)
+    uuid = UUIDField(read_only=True, required=False)
     owner = TrainerSerializer(read_only=True, required=False)
+    members = PokemonSerializer(many=True, required=False)
 
     class Meta:
         model = Team
@@ -16,4 +21,5 @@ class TeamSerializer(serializers.ModelSerializer):
             'uuid',
             'name',
             'owner',
+            'members',
         ]
