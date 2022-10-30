@@ -66,14 +66,7 @@ python manage.py createsuperuser
 
 ### Basic Authentication
 
-Almost all of the endpoints require authentication. You can create a trainer by sending a `POST` request to the `api/trainers/signup` endpoint. The request body should contain the following fields:
-
-```json
-{
-  "username": "username",
-  "password": "password"
-}
-```
+Almost all of the endpoints require authentication. You can create a trainer by sending a `POST` request to the `api/trainers/signup` endpoint.
 
 You can then use the username and password to authenticate your requests.
 
@@ -82,11 +75,31 @@ You can then use the username and password to authenticate your requests.
 #### Trainers
 
 - `POST /api/trainers/signup/` - Create a trainer
+To create a trainer, send a `POST` request to the `api/trainers/signup` endpoint. The request body should contain the following fields:
+
+```json
+{
+  "username": "username",
+  "password": "password"
+}
+```
+
+Only admins can edit or delete trainers.
 
 - `GET /api/trainers/` - Get all trainers
 - `GET /api/trainers/:uuid/` - Get a trainer by uuid
 - `PUT /api/trainers/:uuid/` - Update a trainer by uuid
 - `DELETE /api/trainers/:uuid/` - Delete a trainer by uuid
+
+#### Teams
+
+Trainers can create, edit, and delete their own teams.
+
+- `GET /api/teams/` - Get all teams
+- `GET /api/teams/:uuid/` - Get a team by uuid
+- `POST /api/teams/` - Create a team
+- `PUT /api/teams/:uuid/` - Update a team by uuid
+- `DELETE /api/teams/:uuid/` - Delete a team by uuid
 
 ## Acknowledgments
 
