@@ -1,4 +1,7 @@
-from rest_framework import generics
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.serializers import ValidationError
 
@@ -12,7 +15,7 @@ class TeamLimitExceeded(ValidationError):
     status_code = 400
 
 
-class PokemonList(generics.ListCreateAPIView):
+class PokemonList(ListCreateAPIView):
     queryset = Pokemon.objects.all()
     serializer_class = PokemonDetailSerializer
     permission_classes = (IsAuthenticated,)
@@ -32,7 +35,7 @@ class PokemonList(generics.ListCreateAPIView):
         team.save()
 
 
-class PokemonDetail(generics.RetrieveUpdateDestroyAPIView):
+class PokemonDetail(RetrieveUpdateDestroyAPIView):
     queryset = Pokemon.objects.all()
     serializer_class = PokemonDetailSerializer
     permission_classes = (IsAuthenticated,)
@@ -41,6 +44,9 @@ class PokemonDetail(generics.RetrieveUpdateDestroyAPIView):
         return Team.objects.get(uuid=self.kwargs['uuid'])
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return Pokemon.objects.none()
         team = self.get_team()
         return team.members.all()
 

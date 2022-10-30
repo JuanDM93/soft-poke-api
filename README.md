@@ -110,6 +110,10 @@ Actions can be performed on a team's pokemon with the following endpoints:
 - `GET /api/teams/:uuid/pokemon/` - Get all pokemon on a team
 - `GET /api/teams/:uuid/pokemon/:pk/` - Get a pokemon detail on a team
 
+#### Docs
+
+The API docs (swagger) are available at `/api/docs/`.
+
 ## Acknowledgments
 
 - [PokeAPI](https://pokeapi.co/) - The Pokemon API used
