@@ -2,7 +2,7 @@
 
 Pokemon Teams API
 
-This is a simple API that allows you to create and manage Pokemon teams.
+This is a simple API that allows you to create and manage Pokemon teams. It is built using Django and Django Rest Framework.
 
 ## Getting Started
 
@@ -18,12 +18,30 @@ Once cloned, you may want to create a virtual environment for the project. You c
 python3 -m venv venv
 ```
 
-### Installing
+#### Installing
 
 To install the project dependencies, run the following command:
 
 ```bash
 pip install -r requirements.txt
+```
+
+#### Database
+
+The project uses [PostgreSQL](https://www.postgresql.org/) as its database. You will need to have it installed on your machine.
+
+Once installed, you will need to create a database for the project. You can do so by running the following command:
+
+```bash
+createdb soft-poke-api-db
+```
+
+#### Migrations
+
+You will need to run the migrations for the project. You can do so by running the following command:
+
+```bash
+python manage.py migrate
 ```
 
 ### Running the server
@@ -36,10 +54,44 @@ To run the server, run the following command:
 python manage.py runserver
 ```
 
-## License
+## Usage
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+### Djando Admin
+
+The Django admin is available at `/admin/`. You can create a superuser by running the following command:
+
+```bash
+python manage.py createsuperuser
+```
+
+### Basic Authentication
+
+Almost all of the endpoints require authentication. You can create a trainer by sending a `POST` request to the `api/trainers/signup` endpoint. The request body should contain the following fields:
+
+```json
+{
+  "username": "username",
+  "password": "password"
+}
+```
+
+You can then use the username and password to authenticate your requests.
+
+### Endpoints
+
+#### Trainers
+
+- `POST /api/trainers/signup/` - Create a trainer
+
+- `GET /api/trainers/` - Get all trainers
+- `GET /api/trainers/:uuid/` - Get a trainer by uuid
+- `PUT /api/trainers/:uuid/` - Update a trainer by uuid
+- `DELETE /api/trainers/:uuid/` - Delete a trainer by uuid
 
 ## Acknowledgments
 
-* [PokeAPI](https://pokeapi.co/) - The Pokemon API used
+- [PokeAPI](https://pokeapi.co/) - The Pokemon API used
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
