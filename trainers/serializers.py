@@ -3,9 +3,11 @@ from rest_framework.serializers import (
     Serializer,
     SerializerMethodField,
     CharField,
+    ValidationError,
 )
 
 from django.contrib.auth import get_user_model
+from django.db import IntegrityError
 
 from trainers.models import Trainer
 
@@ -31,10 +33,13 @@ class TrainerSignUpSerializer(Serializer):
     password = CharField(max_length=100, required=True)
 
     def validate(self, attrs):
-        user = get_user_model().objects.create_user(
-            username=attrs['username'],
-            password=attrs['password'],
-        )
+        try:
+            user = get_user_model().objects.create_user(
+                username=attrs['username'],
+                password=attrs['password'],
+            )
+        except IntegrityError as e:
+            raise ValidationError("Username already exists")
         attrs['user'] = user
         return attrs
 

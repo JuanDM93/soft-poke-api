@@ -82,7 +82,7 @@ You can then use the username and password to authenticate your requests.
 
 #### Trainers
 
-- `POST /api/trainers/signup/` - Create a trainer
+- `POST /api/trainers/signup` - Create a trainer
 
 To create a trainer, send a `POST` request to the `api/trainers/signup` endpoint. The request body should contain the following fields:
 
@@ -107,12 +107,26 @@ Trainers can create, edit, and delete their own teams.
 - `GET /api/teams/` - Get all teams
 - `GET /api/teams/:uuid/` - Get a team by uuid
 - `POST /api/teams/` - Create a team
+
+```json
+{
+  "name": "team_name"
+}
+```
+
 - `PUT /api/teams/:uuid/` - Update a team by uuid
 - `DELETE /api/teams/:uuid/` - Delete a team by uuid
 
 Actions can be performed on a team's pokemon with the following endpoints:
 
 - `POST /api/teams/:uuid/pokemon/` - Add a pokemon to a team
+
+```json
+{
+  "name": "pokemon_name"
+}
+```
+
 - `DELETE /api/teams/:uuid/pokemon/:pk/` - Remove a pokemon from a team
 - `PUT /api/teams/:uuid/pokemon/:pk/` - Update a pokemon on a team
 - `GET /api/teams/:uuid/pokemon/` - Get all pokemon on a team
@@ -121,6 +135,10 @@ Actions can be performed on a team's pokemon with the following endpoints:
 #### Docs
 
 The API docs (swagger) are available at `/api/docs/`.
+
+- `GET /api/docs/swagger` - Get the swagger UI
+- `GET /api/docs/swagger.<ext>` - Get the swagger schema in the specified format (json, yaml)
+- `GET /api/docs/redoc` - Get the redoc UI
 
 ## Acknowledgments
 
